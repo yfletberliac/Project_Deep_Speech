@@ -1,7 +1,4 @@
-# Note !!! This is not a bash script (some of the steps require reboot)
-# I named it .sh just so Github does correct syntax highlighting.
-#
-# This is also available as an AMI in us-east-1 (virginia): ami-<id>
+# This is also available as an AMI in us-east-1d (N. Virginia): ami-cad09edd
 #
 # Source: https://github.com/SeanNaren/deepspeech.torch/wiki/Installation
 
@@ -16,12 +13,12 @@ sudo apt-get install -y build-essential python-pip python-dev git python-numpy s
 git clone https://github.com/torch/distro.git ~/torch --recursive
 cd ~/torch; bash install-deps;
 ./install.sh
+cd
 
-# Refresh the env variables (set when installing Torch)
+# Refresh the env variables (that were set when installing Torch)
 source ~/.bashrc
 
 # Install CUDA 7.5
-cd
 wget http://developer.download.nvidia.com/compute/cuda/7.5/Prod/local_installers/cuda_7.5.18_linux.run
 sudo chmod +x ./cuda_7.5.18_linux.run
 sudo ./cuda_7.5.18_linux.run
@@ -78,14 +75,22 @@ cd lmdb.torch
 luarocks make
 
 # Or do the following on Ubuntu 14.04
-# sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
 
 # Several updates
+luarocks install cutorch
 luarocks install torch
 luarocks install nn
 luarocks install dpnn
 
-# Install cuDNN V5 through this link https://developer.nvidia.com/cudnn
+###
+# Here install cuDNN V5 through this link https://developer.nvidia.com/cudnn
+# Check that libcudnn.so.5 and libcudnn.so are in /usr/local/cuda/lib64/
+###
+
+# Set environnement variables
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64/libcudnn.so:$LD_LIBRARY_PATH
+export CUDNN_PATH=/usr/local/cuda/lib64/libcudnn.so.5
 
 # Install lua bindings for cuDNN R5
 luarocks install https://raw.githubusercontent.com/soumith/cudnn.torch/master/cudnn-scm-1.rockspec
