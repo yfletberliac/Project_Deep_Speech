@@ -1,4 +1,4 @@
-# This is also available as an AMI in us-east-1d (N. Virginia): ami-96b2e081
+# This is also available as an AMI in us-east-1d (N. Virginia): ami-8c1a449b
 #
 # Source: https://github.com/SeanNaren/deepspeech.torch/wiki/Installation
 
