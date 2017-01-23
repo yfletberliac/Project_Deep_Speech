@@ -6,4 +6,4 @@
 
 **A first run** on an AWS EC2 g2.8xlarge (2 CNNs, 7 RNNs with 1760 units) has been performed on a 50 minutes clean dataset.
 
-**UPDATE:** Trained the model on LibriSpeech dataset 1000h of speech: 12% of WER (test-clean for the validation set).
+**UPDATE:** Trained the model on LibriSpeech dataset 1000h of speech: 12% of WER (test-clean for the validation set). On 2xK80 with batch size 64 - almost 10 days on run.
